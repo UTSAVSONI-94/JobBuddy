@@ -8,9 +8,9 @@ def call_gemini(prompt: str, system_instruction: str = "", json_mode: bool = Fal
     if not api_key or api_key == "your_gemini_api_key_here":
         return ""
 
-    is_bearer = api_key.startswith("AQ.") or api_key.startswith("ya29.")
+    is_bearer = api_key.startswith("ya29.")
 
-    for model_name in ["gemini-2.0-flash", "gemini-1.5-flash"]:
+    for model_name in ["gemini-flash-lite-latest", "gemini-1.5-flash-latest", "gemini-2.0-flash"]:
         headers = {"Content-Type": "application/json"}
         if is_bearer:
             url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent"
@@ -43,15 +43,14 @@ def call_gemini(prompt: str, system_instruction: str = "", json_mode: bool = Fal
                 data=req_data,
                 headers=headers
             )
-            with urllib.request.urlopen(req, timeout=20) as resp:
+            with urllib.request.urlopen(req, timeout=12) as resp:
                 data = json.loads(resp.read().decode("utf-8"))
                 candidates = data.get("candidates", [])
                 if candidates:
                     parts = candidates[0].get("content", {}).get("parts", [])
-                    if parts and "text" in parts[0]:
-                        return parts[0]["text"].strip()
-        except Exception as e:
-            print(f"Gemini call error with {model_name}: {e}")
+                    if parts:
+                        return parts[0].get("text", "").strip()
+        except Exception:
             continue
 
     return ""
