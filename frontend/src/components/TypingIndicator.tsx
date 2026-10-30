@@ -1,15 +1,13 @@
-import { Bot } from 'lucide-react'
-
 export default function TypingIndicator() {
   return (
-    <div className="flex gap-3 my-3 justify-start items-center">
-      <div className="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center shrink-0 shadow-sm">
-        <Bot className="w-4 h-4" />
+    <div className="flex gap-2.5 my-2 justify-start items-center">
+      <div className="w-6 h-6 rounded bg-slate-200 text-slate-700 flex items-center justify-center shrink-0 text-xs font-bold">
+        JB
       </div>
-      <div className="bg-white border border-slate-100 rounded-2xl rounded-tl-none px-4 py-3 shadow-sm flex items-center gap-1.5">
-        <span className="w-2 h-2 bg-indigo-500 rounded-full animate-bounce [animation-delay:-0.3s]" />
-        <span className="w-2 h-2 bg-indigo-500 rounded-full animate-bounce [animation-delay:-0.15s]" />
-        <span className="w-2 h-2 bg-indigo-500 rounded-full animate-bounce" />
+      <div className="bg-slate-100 rounded-lg px-3 py-2 flex items-center gap-1">
+        <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce [animation-delay:-0.3s]" />
+        <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce [animation-delay:-0.15s]" />
+        <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" />
       </div>
     </div>
   )

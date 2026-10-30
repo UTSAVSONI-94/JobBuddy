@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { Send, Sparkles, Briefcase, Globe, CheckSquare } from 'lucide-react'
+import { Send } from 'lucide-react'
 import MessageBubble from './MessageBubble'
 import TypingIndicator from './TypingIndicator'
 import type { Message } from '../types'
@@ -11,11 +11,11 @@ interface ChatWindowProps {
   hasResume: boolean
 }
 
-const QUICK_ACTIONS = [
-  { label: 'Find matching jobs', prompt: 'Recommend matching jobs for my profile', icon: Briefcase },
-  { label: 'Remote roles only', prompt: 'Show only remote jobs', icon: Globe },
-  { label: 'Jobs needing React', prompt: 'Show jobs needing React', icon: Sparkles },
-  { label: 'My applied jobs', prompt: 'Show my applied jobs', icon: CheckSquare },
+const SUGGESTIONS = [
+  'Recommend matching jobs',
+  'Show only remote roles',
+  'Jobs needing React',
+  'Show my applied jobs'
 ]
 
 export default function ChatWindow({ messages, isLoading, onSendMessage, hasResume }: ChatWindowProps) {
@@ -45,8 +45,8 @@ export default function ChatWindow({ messages, isLoading, onSendMessage, hasResu
   }
 
   return (
-    <div className="flex flex-col h-full bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
-      <div className="flex-1 overflow-y-auto px-4 py-4 space-y-1">
+    <div className="flex flex-col h-full bg-white border border-slate-200 rounded-lg overflow-hidden">
+      <div className="flex-1 overflow-y-auto px-4 py-3 space-y-1">
         {messages.map(msg => (
           <MessageBubble key={msg.id} message={msg} />
         ))}
@@ -54,18 +54,17 @@ export default function ChatWindow({ messages, isLoading, onSendMessage, hasResu
         <div ref={messagesEndRef} />
       </div>
 
-      <div className="p-3 border-t border-slate-100 bg-slate-50/50">
+      <div className="p-3 border-t border-slate-200 bg-slate-50">
         <div className="flex items-center gap-1.5 overflow-x-auto pb-2 mb-2 scrollbar-none">
-          {QUICK_ACTIONS.map((action, idx) => (
+          {SUGGESTIONS.map((text, idx) => (
             <button
               key={idx}
               type="button"
               disabled={isLoading}
-              onClick={() => onSendMessage(action.prompt)}
-              className="text-xs bg-white border border-slate-200 hover:border-indigo-400 hover:bg-indigo-50/50 text-slate-700 px-3 py-1.5 rounded-full shrink-0 flex items-center gap-1.5 transition-all font-medium shadow-2xs"
+              onClick={() => onSendMessage(text)}
+              className="text-xs bg-white border border-slate-300 hover:bg-slate-100 hover:border-slate-400 text-slate-700 px-2.5 py-1 rounded shrink-0 transition-colors"
             >
-              <action.icon className="w-3.5 h-3.5 text-indigo-500" />
-              {action.label}
+              {text}
             </button>
           ))}
         </div>
@@ -79,17 +78,18 @@ export default function ChatWindow({ messages, isLoading, onSendMessage, hasResu
             disabled={isLoading}
             placeholder={
               hasResume
-                ? "Ask me anything (e.g. 'apply to job 1', 'remote roles only')..."
-                : "Ask anything, or upload a resume to match jobs..."
+                ? "Type a query (e.g. 'apply to job 1', 'show only remote')..."
+                : "Type a message or upload your resume to begin..."
             }
-            className="flex-1 bg-white border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 rounded-xl px-4 py-2.5 text-sm text-slate-800 placeholder-slate-400 outline-none transition-all shadow-2xs"
+            className="flex-1 bg-white border border-slate-300 focus:border-slate-500 focus:outline-none rounded px-3 py-2 text-sm text-slate-800 placeholder-slate-400"
           />
           <button
             type="submit"
             disabled={!input.trim() || isLoading}
-            className="w-10 h-10 rounded-xl bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-200 text-white flex items-center justify-center shrink-0 transition-all shadow-sm"
+            className="px-3.5 py-2 bg-slate-900 hover:bg-slate-800 disabled:bg-slate-300 text-white rounded text-sm font-medium transition-colors flex items-center justify-center shrink-0"
           >
-            <Send className="w-4 h-4" />
+            <Send className="w-3.5 h-3.5 mr-1.5" />
+            Send
           </button>
         </form>
       </div>

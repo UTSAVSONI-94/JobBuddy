@@ -1,1 +1,42 @@
-[]
+[
+  {
+    "application_id": "app_08276bf2",
+    "job_id": "job_1763",
+    "job_title": "Senior Cloud / DevOps Engineer \u2013 AWS, Kubernetes/OpenShift (m/w/d)",
+    "company": "Rockstardevelopers GmbH",
+    "location": "Remote",
+    "sourceLink": "https://www.arbeitnow.com/jobs/companies/rockstardevelopers-gmbh/senior-cloud-devops-engineer-aws-kubernetes-openshift-stuttgart-311937",
+    "applied_at": "2026-10-30T12:39:45.837285+00:00",
+    "status": "Applied"
+  },
+  {
+    "application_id": "app_8453466f",
+    "job_id": "job_1759",
+    "job_title": "KI-Entwickler LLM / RAG / Agenten \u2013 Python oder TypeScript (m/w/d)",
+    "company": "Rockstardevelopers GmbH",
+    "location": "Remote",
+    "sourceLink": "https://www.arbeitnow.com/jobs/companies/rockstardevelopers-gmbh/ki-entwickler-llm-rag-agenten-python-oder-typescript-berlin-207271",
+    "applied_at": "2026-10-30T12:40:03.192230+00:00",
+    "status": "Applied"
+  },
+  {
+    "application_id": "app_570d0696",
+    "job_id": "job_1262",
+    "job_title": "Freelance Full-Stack Developer | Django | AI Products | Python & LLM Integration | Remote 100%",
+    "company": "hurra.com",
+    "location": "Remote",
+    "sourceLink": "https://www.arbeitnow.com/jobs/companies/hurracom/freelance-full-stack-developer-django-ai-products-python-llm-integration-remote-100-stuttgart-200558",
+    "applied_at": "2026-10-30T12:40:04.377216+00:00",
+    "status": "Applied"
+  },
+  {
+    "application_id": "app_aa4c81d2",
+    "job_id": "job_0024",
+    "job_title": "Software Engineer AI Coding Tasks",
+    "company": "Askable",
+    "location": "Remote",
+    "sourceLink": "https://remoteOK.com/remote-jobs/remote-software-engineer-ai-coding-tasks-askable-1137538",
+    "applied_at": "2026-10-30T12:40:06.810256+00:00",
+    "status": "Applied"
+  }
+]

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Bot, Sparkles, Briefcase, CheckCircle2 } from 'lucide-react'
+import { Briefcase, CheckCircle2 } from 'lucide-react'
 import ChatWindow from './components/ChatWindow'
 import ResumeUpload from './components/ResumeUpload'
 import JobCard from './components/JobCard'
@@ -31,44 +31,42 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans text-slate-800">
-      <header className="bg-white border-b border-slate-200/80 sticky top-0 z-30 shadow-2xs">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center shadow-sm">
-              <Bot className="w-6 h-6" />
+    <div className="min-h-screen bg-slate-50 flex flex-col text-slate-800">
+      <header className="bg-white border-b border-slate-200 sticky top-0 z-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded bg-slate-900 text-white flex items-center justify-center font-bold text-sm">
+              JB
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="font-bold text-lg text-slate-900 tracking-tight">JobBuddy</h1>
-                <span className="text-[11px] font-semibold bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded-full border border-indigo-100">
-                  AI Assistant
-                </span>
+                <span className="font-semibold text-slate-900 text-sm tracking-tight">JobBuddy</span>
+                <span className="text-xs text-slate-400">/</span>
+                <span className="text-xs text-slate-500 font-normal">Job Assistant</span>
               </div>
-              <p className="text-xs text-slate-500">Resume parsing, matching, and 1-click apply</p>
             </div>
           </div>
 
           <div className="flex items-center gap-3">
             {appliedJobIds.size > 0 && (
-              <div className="hidden sm:flex items-center gap-1.5 text-xs font-semibold bg-emerald-50 text-emerald-700 px-3 py-1.5 rounded-xl border border-emerald-200">
-                <CheckCircle2 className="w-3.5 h-3.5" />
-                {appliedJobIds.size} Applied
+              <div className="hidden sm:flex items-center gap-1.5 text-xs text-slate-700 bg-slate-100 px-2.5 py-1 rounded border border-slate-200">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                <span className="font-medium">{appliedJobIds.size}</span> applied
               </div>
             )}
-            <div className="flex sm:hidden bg-slate-100 p-1 rounded-xl">
+            <div className="flex sm:hidden border border-slate-200 rounded p-0.5 bg-slate-100">
               <button
                 onClick={() => setActiveTab('chat')}
-                className={`text-xs font-semibold px-3 py-1 rounded-lg transition-all ${
-                  activeTab === 'chat' ? 'bg-white shadow-xs text-indigo-600' : 'text-slate-600'
+                className={`text-xs px-2.5 py-1 rounded font-medium transition-colors ${
+                  activeTab === 'chat' ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-600'
                 }`}
               >
                 Chat
               </button>
               <button
                 onClick={() => setActiveTab('jobs')}
-                className={`text-xs font-semibold px-3 py-1 rounded-lg transition-all relative ${
-                  activeTab === 'jobs' ? 'bg-white shadow-xs text-indigo-600' : 'text-slate-600'
+                className={`text-xs px-2.5 py-1 rounded font-medium transition-colors ${
+                  activeTab === 'jobs' ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-600'
                 }`}
               >
                 Jobs ({jobs.length})
@@ -78,9 +76,9 @@ export default function App() {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex-1 w-full grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-5 flex-1 w-full grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
         <div
-          className={`lg:col-span-7 flex flex-col gap-4 h-[calc(100vh-7rem)] ${
+          className={`lg:col-span-7 flex flex-col gap-3.5 h-[calc(100vh-6.5rem)] ${
             activeTab === 'chat' ? 'flex' : 'hidden lg:flex'
           }`}
         >
@@ -100,30 +98,25 @@ export default function App() {
         </div>
 
         <div
-          className={`lg:col-span-5 flex flex-col gap-4 h-[calc(100vh-7rem)] ${
+          className={`lg:col-span-5 flex flex-col gap-3 h-[calc(100vh-6.5rem)] ${
             activeTab === 'jobs' ? 'flex' : 'hidden lg:flex'
           }`}
         >
-          <div className="bg-white rounded-2xl border border-slate-100 p-4 shadow-sm flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center">
-                <Sparkles className="w-4 h-4" />
-              </div>
-              <div>
-                <h2 className="text-sm font-bold text-slate-800">Recommended Jobs</h2>
-                <p className="text-xs text-slate-500">
-                  {jobs.length > 0 ? `${jobs.length} tailored matches found` : 'Awaiting resume or search'}
-                </p>
-              </div>
+          <div className="bg-white border border-slate-200 rounded-lg p-3 flex items-center justify-between">
+            <div>
+              <h2 className="text-xs font-semibold text-slate-900 uppercase tracking-wider">Matched Jobs</h2>
+              <p className="text-xs text-slate-500 mt-0.5">
+                {jobs.length > 0 ? `${jobs.length} roles found for your profile` : 'Upload a resume to see matching jobs'}
+              </p>
             </div>
             {jobs.length > 0 && (
-              <span className="text-xs font-semibold bg-slate-100 text-slate-700 px-2.5 py-1 rounded-full">
-                Ranked by AI
+              <span className="text-xs text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200 font-mono">
+                {jobs.length} results
               </span>
             )}
           </div>
 
-          <div className="flex-1 overflow-y-auto space-y-3 pr-1">
+          <div className="flex-1 overflow-y-auto space-y-2.5 pr-0.5">
             {jobs.length > 0 ? (
               jobs.map((job, idx) => (
                 <JobCard
@@ -135,20 +128,20 @@ export default function App() {
                 />
               ))
             ) : (
-              <div className="h-full bg-white rounded-2xl border border-slate-100 p-8 shadow-sm flex flex-col items-center justify-center text-center">
-                <div className="w-14 h-14 rounded-2xl bg-indigo-50 text-indigo-500 flex items-center justify-center mb-3">
-                  <Briefcase className="w-7 h-7" />
+              <div className="h-full bg-white border border-slate-200 border-dashed rounded-lg p-6 flex flex-col items-center justify-center text-center">
+                <div className="w-10 h-10 rounded bg-slate-100 text-slate-500 flex items-center justify-center mb-2.5">
+                  <Briefcase className="w-5 h-5" />
                 </div>
-                <h3 className="font-bold text-slate-800 text-base mb-1">No Jobs Displayed Yet</h3>
-                <p className="text-xs text-slate-500 max-w-xs mb-4 leading-relaxed">
-                  Upload your resume or ask JobBuddy in chat to recommend matching roles!
+                <h3 className="font-medium text-slate-800 text-sm mb-1">No Jobs Listed</h3>
+                <p className="text-xs text-slate-500 max-w-xs mb-3.5 leading-relaxed">
+                  Upload your resume or ask JobBuddy in the chat to see relevant positions.
                 </p>
                 <button
                   onClick={() => handleSend('Recommend matching jobs')}
                   disabled={isLoading}
-                  className="text-xs font-semibold bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-4 py-2 rounded-xl transition-all border border-indigo-100"
+                  className="text-xs font-medium text-slate-700 bg-white border border-slate-300 hover:bg-slate-50 px-3 py-1.5 rounded transition-colors"
                 >
-                  Find Roles Now
+                  Find Jobs
                 </button>
               </div>
             )}

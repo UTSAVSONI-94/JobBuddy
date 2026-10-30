@@ -1,5 +1,4 @@
 import React from 'react'
-import { Bot, User } from 'lucide-react'
 import type { Message } from '../types'
 
 interface MessageBubbleProps {
@@ -26,8 +25,8 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
 
       if (line.trim().startsWith('•') || line.trim().startsWith('-')) {
         return (
-          <div key={lineIdx} className="flex items-start gap-2 my-0.5 ml-2">
-            <span className="text-indigo-500 font-bold">•</span>
+          <div key={lineIdx} className="flex items-start gap-1.5 my-0.5 ml-1">
+            <span className="text-slate-400 font-bold">•</span>
             <span>{renderedLine}</span>
           </div>
         )
@@ -43,37 +42,31 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
   }
 
   return (
-    <div className={`flex gap-3 my-3 ${isAssistant ? 'justify-start' : 'justify-end'}`}>
+    <div className={`flex gap-2.5 my-2.5 ${isAssistant ? 'justify-start' : 'justify-end'}`}>
       {isAssistant && (
-        <div className="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center shrink-0 shadow-sm mt-1">
-          <Bot className="w-4 h-4" />
+        <div className="w-6 h-6 rounded bg-slate-200 text-slate-700 flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">
+          JB
         </div>
       )}
 
       <div
-        className={`max-w-[85%] sm:max-w-[75%] rounded-2xl px-4 py-3 text-sm leading-relaxed shadow-sm ${
+        className={`max-w-[85%] sm:max-w-[78%] rounded-lg px-3.5 py-2.5 text-sm leading-relaxed ${
           isAssistant
-            ? 'bg-white text-slate-700 border border-slate-100 rounded-tl-none'
-            : 'bg-indigo-600 text-white rounded-tr-none'
+            ? 'bg-slate-100 text-slate-800'
+            : 'bg-slate-900 text-white'
         }`}
       >
-        <div className={isAssistant ? 'text-slate-700' : 'text-indigo-50'}>
+        <div>
           {renderContent(message.content)}
         </div>
         <div
-          className={`text-[10px] mt-1.5 ${
-            isAssistant ? 'text-slate-400 text-left' : 'text-indigo-200 text-right'
+          className={`text-[10px] mt-1 ${
+            isAssistant ? 'text-slate-400 text-left' : 'text-slate-300 text-right'
           }`}
         >
           {new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
         </div>
       </div>
-
-      {!isAssistant && (
-        <div className="w-8 h-8 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center shrink-0 mt-1">
-          <User className="w-4 h-4" />
-        </div>
-      )}
     </div>
   )
 }
